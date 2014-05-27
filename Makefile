@@ -1,20 +1,22 @@
 ROOT = $(shell pwd)
 RUND = $(ROOT)/run
+CONF = run/etc/umurmur.conf
+CERT = run/certs/cert.pem
 
 run: setup
-	umurmurd -d -c run/etc/umurmur.conf
+	umurmurd -d -c $(CONF)
 
 run/clean: clean run
 
 clean:
 	rm run/*/*.*
 
-setup: run/etc/umurmur.conf run/certs/cert.pem
+setup: $(CONF) $(CERT)
 
-run/certs/cert.pem:
+$(CERT):
 	openssl req -x509 -newkey rsa:2048 -nodes -days 1001 \
 		-keyout $(subst cert.pem,key.pem,$@) -out $@
 
-run/etc/umurmur.conf:
+$(CONF):
 	cat tpls/umurmur.conf | sed "s|@@RUND@@|$(RUND)|g" > $@
 
