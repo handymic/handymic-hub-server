@@ -1,7 +1,7 @@
 # HANDYMIC HUB SERVER
 
-Handymic hub (voip) server to be run on handymic-hub (eg. raspberry-pi). This
-is the hub service that all clients will eventually discover & connect to.
+Handymic hub (voip) server to be run on handymic-hub hardware (eg. raspberry-pi).
+This is the hub service that all clients will eventually discover & connect to.
 
 
 ## Running
